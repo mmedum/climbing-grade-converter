@@ -1,0 +1,8 @@
+{
+  "name": "climbing-grade-converter",
+  "services": [
+    {
+      "src": "climbing_grade_converter/main.py"
+    }
+  ]
+}
