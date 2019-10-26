@@ -4,5 +4,11 @@
     {
       "src": "climbing_grade_converter/main.py"
     }
-  ]
+  ],
+  "saas": {
+    "name": "Climbing Grade Converter",
+    "heading": "Climbing Grade Converter as a ervice",
+    "subheading": "Convert all your grades!",
+    "repo": "https://github.com/mmedum/climbing-grade-converter"
+  }
 }
