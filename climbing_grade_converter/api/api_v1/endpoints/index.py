@@ -5,4 +5,4 @@ router = APIRouter()
 
 @router.get("/", tags=["index"])
 def hello():
-    return "Hello World!"
+    return "Hello from the Climbing Converter!"
