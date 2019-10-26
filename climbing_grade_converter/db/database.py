@@ -669,8 +669,7 @@ def convert_grade(
     climbing_style: str, from_grade_type: str, to_grade_type: str, grade: str
 ) -> dict:
     from_grade_list = get_grades_from_style_with_type(climbing_style, from_grade_type)
-    indicies = [i for i, v in enumerate(from_grade_list) if v == grade]
-    print(indicies)
+    indicies = [i for i, v in enumerate(from_grade_list) if v.lower() == grade.lower()]
 
     grades: List[str] = []
     to_grade_list = get_grades_from_style_with_type(climbing_style, to_grade_type)

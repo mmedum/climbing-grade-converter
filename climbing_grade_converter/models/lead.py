@@ -11,7 +11,12 @@ class LeadGradeType(str, Enum):
     uk = "uk"
 
 
-class GradeConversionModel(BaseModel):
+class GradeConversionRequest(BaseModel):
     from_type: LeadGradeType
     to_type: LeadGradeType
     grade: str
+
+
+class GradeConversionResponse(BaseModel):
+    grade_type: LeadGradeType
+    grades: list

@@ -18,17 +18,17 @@ climbing_style = "boulder"
 
 
 @router.get("/")
-def read_boulder_grades():
+def get_boulder_grades():
     return get_grades_from_style(climbing_style)
 
 
 @router.get("/{boulder_type}")
-def read_type_grades(boulder_type: BoulderGradeType):
+def get_boulder_type_grades(boulder_type: BoulderGradeType):
     return get_grades_from_style_with_type(climbing_style, boulder_type)
 
 
 @router.post("/", response_model=GradeConversionResponse)
-def create_convert_grade(request: GradeConversionRequest):
+def convert_boulder_grade(request: GradeConversionRequest):
     return convert_grade(
         climbing_style, request.from_type, request.to_type, request.grade
     )
