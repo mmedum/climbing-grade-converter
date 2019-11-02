@@ -1,4 +1,5 @@
 from typing import List
+from typing import Dict
 
 lead_usa = [
     "3rd",
@@ -649,7 +650,6 @@ boulder_dict_to_list = {"usa": boulder_usa, "french": boulder_french}
 
 
 def get_grades_from_style_with_type(climbing_style: str, grade_type: str) -> list:
-
     if climbing_style == "boulder":
         return boulder_dict_to_list[grade_type]
     elif climbing_style == "lead":
@@ -657,7 +657,7 @@ def get_grades_from_style_with_type(climbing_style: str, grade_type: str) -> lis
     return []
 
 
-def get_grades_from_style(climbing_style: str) -> dict:
+def get_grades_from_style(climbing_style: str) -> Dict:
     if climbing_style == "boulder":
         return boulder_dict_to_list
     elif climbing_style == "lead":
@@ -665,15 +665,40 @@ def get_grades_from_style(climbing_style: str) -> dict:
     return {}
 
 
+def find_indicies_of_key(elements: list, key: str) -> List[str]:
+    indicies = [i for i, v in enumerate(elements) if v.lower() == key.lower()]
+    return indicies
+
+
 def convert_grade(
     climbing_style: str, from_grade_type: str, to_grade_type: str, grade: str
-) -> dict:
+) -> Dict:
     from_grade_list = get_grades_from_style_with_type(climbing_style, from_grade_type)
-    indicies = [i for i, v in enumerate(from_grade_list) if v.lower() == grade.lower()]
+    indicies = find_indicies_of_key(from_grade_list, grade)
 
     grades: List[str] = []
-    to_grade_list = get_grades_from_style_with_type(climbing_style, to_grade_type)
+    to_grade_list: List[str] = get_grades_from_style_with_type(
+        climbing_style, to_grade_type
+    )
     for element in indicies:
         grades.append(to_grade_list[element])
 
     return {"grade_type": to_grade_type, "grades": grades}
+
+
+def convert_grades(climbing_style: str, from_grade_type, str, grade: str) -> Dict:
+    result: Dict[str, List] = {}
+    styles: Dict[str, List] = get_grades_from_style(climbing_style)
+    indicies: List[str] = find_indicies_of_key(styles[from_grade_type])
+
+    for key in styles.keys():
+        if key == climbing_style:
+            continue
+
+        grades: List[str] = []
+        style_list: List[str] = styles[key]
+        for element in indicies:
+            grades.append(style_list[element])
+
+        result[key]: Dict[str, List] = grades
+    return result

@@ -1,5 +1,7 @@
 from enum import Enum
 from pydantic import BaseModel
+from typing import Dict
+from typing import List
 
 
 class BoulderGradeType(str, Enum):
@@ -7,12 +9,20 @@ class BoulderGradeType(str, Enum):
     french = "french"
 
 
-class GradeConversionRequest(BaseModel):
+class GradeConversionWithToTypeRequest(BaseModel):
     from_type: BoulderGradeType
     to_type: BoulderGradeType
     grade: str
 
 
-class GradeConversionResponse(BaseModel):
+class GradeConversionWithToTypeResponse(BaseModel):
     grade_type: BoulderGradeType
-    grades: list
+    grades: List
+
+
+class GradeConversionNoToTypeRequest(BaseModel):
+    grade: str
+
+
+class GradeConversionNoToTypeResponse(BaseModel):
+    grade_type: Dict[BoulderGradeType, List]

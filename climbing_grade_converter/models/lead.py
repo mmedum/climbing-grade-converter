@@ -1,5 +1,6 @@
 from enum import Enum
 from pydantic import BaseModel
+from typing import List
 
 
 class LeadGradeType(str, Enum):
@@ -19,4 +20,4 @@ class GradeConversionRequest(BaseModel):
 
 class GradeConversionResponse(BaseModel):
     grade_type: LeadGradeType
-    grades: list
+    grades: List
