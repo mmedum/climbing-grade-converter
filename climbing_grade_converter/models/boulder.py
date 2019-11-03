@@ -25,4 +25,4 @@ class GradeConversionNoToTypeRequest(BaseModel):
 
 
 class GradeConversionNoToTypeResponse(BaseModel):
-    grade_type: Dict[BoulderGradeType, List]
+    grades: Dict[BoulderGradeType, List]

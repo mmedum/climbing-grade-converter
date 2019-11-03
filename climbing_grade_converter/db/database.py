@@ -665,7 +665,7 @@ def get_grades_from_style(climbing_style: str) -> Dict:
     return {}
 
 
-def find_indicies_of_key(elements: list, key: str) -> List[str]:
+def find_indicies_of_key(elements: list, key: str) -> List[int]:
     indicies = [i for i, v in enumerate(elements) if v.lower() == key.lower()]
     return indicies
 
@@ -686,19 +686,22 @@ def convert_grade(
     return {"grade_type": to_grade_type, "grades": grades}
 
 
-def convert_grades(climbing_style: str, from_grade_type, str, grade: str) -> Dict:
-    result: Dict[str, List] = {}
-    styles: Dict[str, List] = get_grades_from_style(climbing_style)
-    indicies: List[str] = find_indicies_of_key(styles[from_grade_type])
+def convert_grades(
+    climbing_style: str, from_grade_type, str, grade: str
+) -> Dict[str, Dict[str, List]]:
+    result: Dict = {}
+    styles: Dict = get_grades_from_style(climbing_style)
+    indicies: List = find_indicies_of_key(styles[from_grade_type], grade)
 
     for key in styles.keys():
         if key == climbing_style:
             continue
 
-        grades: List[str] = []
-        style_list: List[str] = styles[key]
+        grades: List = []
+        style_list: List = styles[key]
         for element in indicies:
             grades.append(style_list[element])
 
-        result[key]: Dict[str, List] = grades
-    return result
+        result[key] = grades
+
+    return {"grades": result}
