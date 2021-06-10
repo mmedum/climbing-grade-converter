@@ -1,4 +1,4 @@
-fastapi==0.42.0
+fastapi==0.65.2
 mypy==0.740
 mypy-extensions==0.4.3
 pydantic==0.32.2
